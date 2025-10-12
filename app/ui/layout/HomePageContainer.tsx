@@ -6,6 +6,7 @@ import { useState, useTransition } from 'react';
 import type { HomePageContainerProps } from './types';
 import { fetchWeatherData } from '@/app/lib/weather/WeatherService';
 import type { ProcessedWeatherData } from '@/app/lib/weather/weatherTypes';
+import { geoLocateLocation } from '@/app/lib/Geocoding/geocodingService';
 
 export default function HomePageContainer({
   weatherData,
@@ -25,13 +26,11 @@ export default function HomePageContainer({
       setIsSearching(true);
       setError(null);
       try {
-        // add Geocoding somehow which will convert searchQuery into long and lat to use below
+        const { lat, long } = await geoLocateLocation(query);
 
-        // const {lat, long} = searchQuery or something similar
-
-        const response = await fetchWeatherData(51.5085, -0.1257); // using london as default atm
+        const response = await fetchWeatherData(lat, long); // using london as default atm
         setCurrentWeatherData(response);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Error fetching weather:', err);
         setError('Failed to fetch weather data. Please try again.');
       } finally {
@@ -42,9 +41,13 @@ export default function HomePageContainer({
 
   // add styling here
   return (
-    <main>
-      <SearchBar onSearch={setSearchQuery} />
-      {!isPending && <WeatherCard weatherData={currentWeatherData} />}
+    <main className='bg-black'>
+      <section className='p-2'>
+        <SearchBar onSearch={handleFetchDataFromSearch} />
+      </section>
+      <section className='p-2'>
+        {!isPending && <WeatherCard weatherData={currentWeatherData} searchQuery={searchQuery} />}
+      </section>
     </main>
   );
 }

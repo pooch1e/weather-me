@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 interface SearchBarProps {
-  onSearch: (searchQuery: string) => Promise<void>;
+  onSearch: (searchQuery: string) => void;
   isSearching?: boolean
 }
 export default function SearchBar({ onSearch, isSearching = false } : SearchBarProps) {

@@ -1,29 +1,38 @@
 // !! FIX STRUCUTRE SO ITS CURRENT TIME:
 // !! CURRENT ->> HOURLY ->> DAILY
-interface CurrentWeather {
-  temperature: number;
-  apparentTemperature: number;
-  weatherCode: number;
-}
-interface WeatherDataItem {
-  current: CurrentWeather;
-  hourly: number[];
-  daily: number[];
-}
+
+import type { ProcessedWeatherData } from '@/app/lib/weather/weatherTypes';
+
 interface WeatherDataProps {
-  weatherData: WeatherDataItem;
+  weatherData: ProcessedWeatherData;
+  searchQuery: string;
 }
 
-export default function WeatherCard({ weatherData }: WeatherDataProps) {
+export default function WeatherCard({
+  weatherData,
+  searchQuery,
+}: WeatherDataProps) {
   return (
-    <div>
-      <h2>Weather Data</h2>
-      <ul>
-        <li>Current Temperature: {weatherData.current.temperature}°C</li>
-        <li>Apparent Temperature: {weatherData.current.apparentTemperature}°C</li>
-        <li>Max Temp: {weatherData.daily[0].minTemp}</li>
-        <li>Min Temp: {weatherData.daily[0].maxTemp}</li>
-      </ul>
+    <div className="w-full max-w-md  mx-auto space-y-4 p-4 text-white font-crimson">
+      {/* location */}
+      <div className="bg-gradient-to-br from-gray-900 to bg-gray-100 rounded-3xl p-6 flex flex-col text-center shadow-lg">
+        <h2 className="text-6xl">{searchQuery}</h2>
+        <div>
+          <div className="text-8xl font-thin mb-2">
+            {weatherData.current.temperature}°
+          </div>
+          <div className="flex justify-between text-sm opacity-80 flex-col">
+            <div>Feels Like: {weatherData.current.apparentTemperature}°C</div>
+            <span>High: {weatherData.daily[0].maxTemp}°C</span>
+            <span>Low: {weatherData.daily[0].minTemp}°C</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p>Add temp throughout day here in seperate card - by the hour</p>
+      </div>
+
+      <div>seperate component here for 7 day forecast</div>
     </div>
   );
 }

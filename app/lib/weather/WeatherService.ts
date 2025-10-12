@@ -19,8 +19,8 @@ export const processWeatherData = async (
     hourly: mapHourlyTimeToTemp(data.hourly.time, data.hourly.temperature_2m),
     daily: mapDailyTimeToTemp(
       data.daily.time,
-      data.daily.temperature_2m_max,
-      data.daily.temperature_2m_min
+      data.daily.temperature_2m_min,
+      data.daily.temperature_2m_max
     ),
   };
 };
@@ -54,7 +54,7 @@ export const fetchWeatherData = async (
     const convertedData = await processWeatherData(rawData);
     console.log('converted data', convertedData);
     return convertedData;
-  } catch (err: any) {
+  } catch (err: unknown) {
     throw new Error(`Failed to fetch weather data: code ${err.status}`);
   }
 };
