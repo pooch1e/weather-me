@@ -1,3 +1,4 @@
+import WeatherCard from "./ui/components/Weather/WeatherCard";
 
 export default async function Home() {
   const testParamsUrl = {
@@ -13,6 +14,9 @@ export default async function Home() {
     console.log(
       data
     );
+
+    const resultData = [data] // putting in array for example
+    return <WeatherCard weatherData={resultData} />
   } catch (err: any) {
     console.log(err, 'error fetching from weather api');
   }
