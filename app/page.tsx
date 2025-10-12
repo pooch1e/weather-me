@@ -19,5 +19,6 @@ export default async function Home() {
     return <WeatherCard weatherData={resultData} />
   } catch (err: any) {
     console.log(err, 'error fetching from weather api');
+    
   }
 }
