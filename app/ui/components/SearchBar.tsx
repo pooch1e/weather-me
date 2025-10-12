@@ -25,15 +25,15 @@ export default function SearchBar({ onSearch, isSearching = false } : SearchBarP
 
 
   return (
-    <div className="w-full max-w-xlg min-w-[200px]">
+    <div className=" max-w-xlg min-w-[200px]">
       <label htmlFor="location-search" className="sr-only">
         Search Location
       </label>
-      <div className="relative" role="search">
+      <div className="relative justify-center" role="search">
         <input
           id="location-search"
           type="text"
-          className="w-full h-36 bg-black font-serif placeholder:text-6xl placeholder:text-white text-white text-6xl border border-red-700 rounded-md pl-3 pr-28 py-4 transition duration-300 ease focus:outline-none focus:border-white hover:border-white shadow-sm focus:shadow "
+          className="w-full h-36 bg-black font-serif placeholder:text-4xl placeholder:text-white placeholder:text-center text-white text-4xl border border-red-700 rounded-md pl-3 pr-28 py-4 transition duration-300 ease focus:outline-none focus:border-white hover:border-white shadow-sm focus:shadow "
           value={searchQuery}
           onChange={(e) => {
             setSearchQuery(e.target.value);
