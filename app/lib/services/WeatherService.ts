@@ -20,7 +20,11 @@ export const processWeatherData = (data) => {
 
 // !!! Change this to work for input long/lat and timezone when searching different areas
 
-export const fetchWeatherData = async (lat: number, long: number) => {
+export const fetchWeatherData = async (
+  lat: number,
+  long: number,
+  timezone: string = 'Europe/London'
+) => {
   const params = new URLSearchParams({
     latitude: lat.toString(),
     longitude: long.toString(),
@@ -28,7 +32,7 @@ export const fetchWeatherData = async (lat: number, long: number) => {
     hourly: 'temperature_2m',
     current:
       'temperature_2m,apparent_temperature,rain,precipitation,weather_code',
-    timezone: 'Europe/London',
+    timezone,
   });
 
   try {
