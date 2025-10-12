@@ -1,5 +1,4 @@
 'use client';
-
 import SearchBar from '../components/SearchBar';
 import WeatherCard from '../components/Weather/WeatherCard';
 import { useState, useTransition } from 'react';
