@@ -55,6 +55,6 @@ export const fetchWeatherData = async (
     console.log('converted data', convertedData);
     return convertedData;
   } catch (err: any) {
-    throw err;
+    throw new Error(`Failed to fetch weather data: code ${err.status}`);
   }
 };
