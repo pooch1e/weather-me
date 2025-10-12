@@ -1,4 +1,4 @@
-import type { ProcessedWeatherData } from '@/app/lib/weather/weatherTypes';
+import type { ProcessedWeatherData } from '../../lib/weather/weatherTypes';
 export interface HomePageContainerProps {
   weatherData: ProcessedWeatherData;
 }

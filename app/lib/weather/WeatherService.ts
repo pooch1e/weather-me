@@ -19,8 +19,8 @@ export const processWeatherData = async (
     hourly: mapHourlyTimeToTemp(data.hourly.time, data.hourly.temperature_2m),
     daily: mapDailyTimeToTemp(
       data.daily.time,
-      data.daily.temperature_2m_max,
-      data.daily.temperature_2m_min
+      data.daily.temperature_2m_min,
+      data.daily.temperature_2m_max
     ),
   };
 };

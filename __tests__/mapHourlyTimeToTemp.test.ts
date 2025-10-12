@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { mapHourlyTimeToTemp } from '@/app/lib/weather/utils/mapHourlyTimeToTemp';
+import { mapHourlyTimeToTemp } from '../app/lib/weather/utils/mapHourlyTimeToTemp';
 
 describe('test map hour to time', () => {
   test('when passed empty arrays, returns empty array', () => {
