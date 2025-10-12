@@ -41,9 +41,13 @@ export default function HomePageContainer({
 
   // add styling here
   return (
-    <main>
-      <SearchBar onSearch={handleFetchDataFromSearch} />
-      {!isPending && <WeatherCard weatherData={currentWeatherData} />}
+    <main className='bg-black'>
+      <section className='p-2'>
+        <SearchBar onSearch={handleFetchDataFromSearch} />
+      </section>
+      <section className='p-2'>
+        {!isPending && <WeatherCard weatherData={currentWeatherData} searchQuery={searchQuery} />}
+      </section>
     </main>
   );
 }
