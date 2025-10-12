@@ -1,53 +1,29 @@
-interface WeatherDataItem {
-  latitude: number,
-  longitude: number,
-  generationtime_ms: number,
-  utc_offset_seconds: number,
-  timezone: string,
-  timezone_abbreviation: string,
-  elevation: number,
-  current_units: {
-    time: string,
-    interval : string
-    tempareture_2m : string,
-    apparent_temperature: string,
-    rain: string,
-    precipitation: string,
-    weather_code: string
-  },
-  current: {
-    time: string,
-    interval: number,
-    temperature_2m:number,
-    apparent_temperature: number,
-    rain: number,
-    precipitation: number,
-    weather_code: number
-  },
+// !! FIX STRUCUTRE SO ITS CURRENT TIME:
+// !! CURRENT ->> HOURLY ->> DAILY
+interface CurrentWeather {
+  temperature: number;
+  apparentTemperature: number;
+  weatherCode: number;
 }
-
+interface WeatherDataItem {
+  current: CurrentWeather;
+  hourly: number[];
+  daily: number[];
+}
 interface WeatherDataProps {
-  weatherData: WeatherDataItem[];
+  weatherData: WeatherDataItem;
 }
 
 export default function WeatherCard({ weatherData }: WeatherDataProps) {
   return (
     <div>
-      {weatherData.map((item, index) => {
-        return (
-          <div key={index}>
-            Weather Data
-            <ul>
-              <li>{item.timezone}</li>
-              <li>{item.current_units.time}</li>
-              <li>Current Temperature: {item.current_units.tempareture_2m}</li>
-              <li>Apparent Temperature: {item.current_units.apparent_temperature}</li>
-              <li>Rain: {item.current_units.rain}</li>
-
-            </ul>
-          </div>
-        );
-      })}
+      <h2>Weather Data</h2>
+      <ul>
+        <li>Current Temperature: {weatherData.current.temperature}°C</li>
+        <li>Apparent Temperature: {weatherData.current.apparentTemperature}°C</li>
+        <li>Max Temp: {weatherData.daily[0].minTemp}</li>
+        <li>Min Temp: {weatherData.daily[0].maxTemp}</li>
+      </ul>
     </div>
   );
 }
