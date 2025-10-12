@@ -7,9 +7,9 @@ import type {
 } from './weatherTypes';
 const WEATHER_BASE_URL = 'https://api.open-meteo.com/v1/forecast?';
 
-export const processWeatherData = (
+export const processWeatherData = async (
   data: RawWeatherApiResponse
-): ProcessedWeatherData => {
+): Promise<ProcessedWeatherData> => {
   return {
     current: {
       temperature: data.current.temperature_2m,
@@ -51,7 +51,7 @@ export const fetchWeatherData = async (
 
     const rawData = await response.json();
     console.log('raw data', rawData);
-    const convertedData = processWeatherData(rawData);
+    const convertedData = await processWeatherData(rawData);
     console.log('converted data', convertedData);
     return convertedData;
   } catch (err: any) {
