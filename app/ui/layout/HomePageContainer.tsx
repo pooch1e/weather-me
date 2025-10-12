@@ -41,12 +41,30 @@ export default function HomePageContainer({
 
   // add styling here
   return (
-    <main className='bg-black'>
-      <section className='p-2'>
+    <main className="bg-black">
+      <section className="p-2">
         <SearchBar onSearch={handleFetchDataFromSearch} />
       </section>
-      <section className='p-2'>
-        {!isPending && <WeatherCard weatherData={currentWeatherData} searchQuery={searchQuery} />}
+
+      {isError && (
+        <section className="p-2">
+          <div className="bg-red-500/10 border border-red-500 text-red-500 p-4 rounded">
+            {isError}
+          </div>
+        </section>
+      )}
+      <section className="p-2">
+        <div className={isPending ? 'opacity-50 pointer-events-none' : ''}>
+          <WeatherCard
+            weatherData={currentWeatherData}
+            searchQuery={searchQuery}
+          />
+        </div>
+        {isPending && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-white">Loading...</div>
+          </div>
+        )}
       </section>
     </main>
   );
