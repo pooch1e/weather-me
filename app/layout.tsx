@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Crimson_Pro, Geist, Geist_Mono } from 'next/font/google';
+import { Crimson_Pro, Electrolize, Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from './ui/layout/Header';
 
@@ -18,10 +18,17 @@ const crimson = Crimson_Pro({
   weight: '500',
 });
 
+const electrolize = Electrolize({
+  variable: '--font-electrolize',
+  weight: '400'
+})
+
 export const metadata: Metadata = {
   title: 'BearTech Weather Test',
   description: 'next.js',
 };
+
+
 
 export default function RootLayout({
   children,
@@ -29,9 +36,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className='text-white bg-black'>
+    <html lang="en" className="text-white bg-black">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${crimson} antialiased`}>
+        className={`${geistSans.variable} ${geistMono.variable} ${crimson.variable}${electrolize.variable} antialiased`}>
         <Header />
         {children}
       </body>

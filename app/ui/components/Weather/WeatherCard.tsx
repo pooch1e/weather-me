@@ -13,7 +13,7 @@ export default function WeatherCard({
   searchQuery,
 }: WeatherDataProps) {
   return (
-    <div className="w-full max-w-md  mx-auto space-y-4 p-4 text-white font-crimson">
+    <div className="w-full max-w-md  mx-auto space-y-4 p-4 text-white font-electrolize font-medium tracking-wide">
       {/* location */}
       <div className="bg-gradient-to-br from-gray-900 to bg-gray-100 rounded-3xl p-6 flex flex-col text-center shadow-lg">
         <h2 className="text-6xl">{searchQuery}</h2>
