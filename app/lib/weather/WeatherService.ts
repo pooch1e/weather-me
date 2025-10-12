@@ -1,8 +1,15 @@
+'use server';
 import { mapDailyTimeToTemp } from './utils/mapDailyTimeToTemp';
 import { mapHourlyTimeToTemp } from './utils/mapHourlyTimeToTemp';
+import type {
+  ProcessedWeatherData,
+  RawWeatherApiResponse,
+} from './weatherTypes';
 const WEATHER_BASE_URL = 'https://api.open-meteo.com/v1/forecast?';
 
-export const processWeatherData = (data) => {
+export const processWeatherData = (
+  data: RawWeatherApiResponse
+): ProcessedWeatherData => {
   return {
     current: {
       temperature: data.current.temperature_2m,
@@ -18,13 +25,11 @@ export const processWeatherData = (data) => {
   };
 };
 
-// !!! Change this to work for input long/lat and timezone when searching different areas
-
 export const fetchWeatherData = async (
   lat: number,
   long: number,
   timezone: string = 'Europe/London'
-) => {
+): Promise<ProcessedWeatherData> => {
   const params = new URLSearchParams({
     latitude: lat.toString(),
     longitude: long.toString(),
