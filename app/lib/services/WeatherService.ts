@@ -22,7 +22,7 @@ export const processWeatherData = (data) => {
 
 export const fetchWeatherData = async (lat: number, long: number) => {
   const params = new URLSearchParams({
-    latitute: lat.toString(),
+    latitude: lat.toString(),
     longitude: long.toString(),
     daily: 'weather_code,temperature_2m_max,temperature_2m_min',
     hourly: 'temperature_2m',
@@ -32,7 +32,7 @@ export const fetchWeatherData = async (lat: number, long: number) => {
   });
 
   try {
-    const response = await fetch(`${WEATHER_BASE_URL} + ${params.toString()}`, {
+    const response = await fetch(`${WEATHER_BASE_URL}${params.toString()}`, {
       next: { revalidate: 3600 },
     });
 
@@ -40,7 +40,7 @@ export const fetchWeatherData = async (lat: number, long: number) => {
       throw new Error(`Weather API error: ${response.status}`);
     }
 
-    const rawData = response.json();
+    const rawData = await response.json();
     console.log('raw data', rawData);
     const convertedData = processWeatherData(rawData);
     console.log('converted data', convertedData);
