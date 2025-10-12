@@ -31,7 +31,7 @@ export default function HomePageContainer({
 
         const response = await fetchWeatherData(51.5085, -0.1257); // using london as default atm
         setCurrentWeatherData(response);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Error fetching weather:', err);
         setError('Failed to fetch weather data. Please try again.');
       } finally {
