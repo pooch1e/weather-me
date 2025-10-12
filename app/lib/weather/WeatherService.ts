@@ -1,5 +1,5 @@
-import { mapDailyTimeToTemp } from '../utils/mapDailyTimeToTemp';
-import { mapHourlyTimeToTemp } from '../utils/mapHourlyTimeToTemp';
+import { mapDailyTimeToTemp } from './utils/mapDailyTimeToTemp';
+import { mapHourlyTimeToTemp } from './utils/mapHourlyTimeToTemp';
 const WEATHER_BASE_URL = 'https://api.open-meteo.com/v1/forecast?';
 
 export const processWeatherData = (data) => {

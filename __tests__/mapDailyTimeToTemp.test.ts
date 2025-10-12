@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { mapDailyTimeToTemp } from '@/app/lib/utils/mapDailyTimeToTemp';
+import { mapDailyTimeToTemp } from '@/app/lib/weather/utils/mapDailyTimeToTemp';
 
 describe('map Daily Time to Temperatures', () => {
   test('when passed empty arrays, returns empty array', () => {

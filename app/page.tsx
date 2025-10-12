@@ -1,5 +1,5 @@
 import WeatherCard from "./ui/components/Weather/WeatherCard";
-import { fetchWeatherData } from "./lib/services/WeatherService";
+import { fetchWeatherData } from "./lib/weather/WeatherService";
 export default async function Home() {
   try {
     const weatherData = await fetchWeatherData(51.5085, -0.1257);
