@@ -1,7 +1,7 @@
 interface HourlyWeather {
   hourlyData: Array<{
     time: string;
-    temp: number;
+    temperature: number;
   }>;
 }
 export default function HourlyWeatherStrip({ hourlyData }: HourlyWeather) {
@@ -27,7 +27,9 @@ export default function HourlyWeatherStrip({ hourlyData }: HourlyWeather) {
             key={index}
             className="flex flex-col items-center space-y-2 text-center">
             <span className="text-xs opacity-70">{formatTime(hour.time)}</span>
-            <span className="text-sm font-light">{Math.round(hour.temp)}°</span>
+            <span className="text-sm font-light">
+              {Math.round(hour.temperature)}°
+            </span>
           </div>
         ))}
       </div>
