@@ -3,6 +3,7 @@
 
 import type { ProcessedWeatherData } from '@/app/lib/weather/weatherTypes';
 import ConditionsCard from './CondititionsCard';
+import HourlyWeatherStrip from './HourlyWeatherStrip';
 
 interface WeatherDataProps {
   weatherData: ProcessedWeatherData;
@@ -33,7 +34,7 @@ export default function WeatherCard({
         <div>
           <ConditionsCard conditions={weatherData.current.weatherCode} />
         </div>
-        <p>Add temp throughout day here in seperate card - by the hour</p>
+        <HourlyWeatherStrip hourlyData={weatherData.hourly} />
       </div>
 
       <div>seperate component here for 7 day forecast</div>
