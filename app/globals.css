@@ -5,3 +5,7 @@
   --foreground: #171717;
 }
 
+@theme {
+  --font-family-electrolize: var(--font-electrolize);
+}
+

@@ -20,7 +20,8 @@ const crimson = Crimson_Pro({
 
 const electrolize = Electrolize({
   variable: '--font-electrolize',
-  weight: '400'
+  weight: '400',
+  subsets: ['latin']
 })
 
 export const metadata: Metadata = {
@@ -38,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="text-white bg-black">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${crimson.variable}${electrolize.variable} antialiased`}>
+        className={`${geistSans.variable} ${geistMono.variable} ${crimson.variable} ${electrolize.variable} antialiased`}>
         <Header />
         {children}
       </body>

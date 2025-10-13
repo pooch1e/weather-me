@@ -2,6 +2,7 @@
 // !! CURRENT ->> HOURLY ->> DAILY
 
 import type { ProcessedWeatherData } from '@/app/lib/weather/weatherTypes';
+import ConditionsCard from './CondititionsCard';
 
 interface WeatherDataProps {
   weatherData: ProcessedWeatherData;
@@ -29,6 +30,9 @@ export default function WeatherCard({
         </div>
       </div>
       <div>
+        <div>
+          <ConditionsCard conditions={weatherData.current.weatherCode} />
+        </div>
         <p>Add temp throughout day here in seperate card - by the hour</p>
       </div>
 
