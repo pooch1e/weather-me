@@ -5,7 +5,7 @@ interface HourlyWeather {
   }>;
 }
 export default function HourlyWeatherStrip({ hourlyData }: HourlyWeather) {
-  console.log(hourlyData);
+ 
   // format time
   const formatTime = (timeString: string) => {
     const date = new Date(timeString);
@@ -20,8 +20,8 @@ export default function HourlyWeatherStrip({ hourlyData }: HourlyWeather) {
     return date.toLocaleTimeString();
   };
   return (
-    <div className="overflow-x-auto py-4">
-      <div className="flex space-x-6" style={{ width: 'max-content' }}>
+    <div className="overflow-x-auto py-4 border-2">
+      <div className="flex space-x-6">
         {hourlyData.slice(0, 24).map((hour, index) => (
           <div
             key={index}
