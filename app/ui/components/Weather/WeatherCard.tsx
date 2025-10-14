@@ -4,6 +4,7 @@
 import type { ProcessedWeatherData } from '@/app/lib/weather/weatherTypes';
 import ConditionsCard from './CondititionsCard';
 import HourlyWeatherStrip from './HourlyWeatherStrip';
+import WeeklyWeatherCard from './WeeklyWeather/WeeklyWeatherCard';
 
 interface WeatherDataProps {
   weatherData: ProcessedWeatherData;
@@ -37,7 +38,9 @@ export default function WeatherCard({
         <HourlyWeatherStrip hourlyData={weatherData.hourly} />
       </div>
 
-      <div>seperate component here for 7 day forecast</div>
+      <div className='border-2 rounded-2xl'>
+      
+        <WeeklyWeatherCard weeklyData={weatherData.daily}/></div>
     </div>
   );
 }
