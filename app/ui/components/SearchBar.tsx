@@ -25,15 +25,15 @@ export default function SearchBar({ onSearch, isSearching = false } : SearchBarP
 
 
   return (
-    <div className=" max-w-xlg min-w-[200px]">
+    <div className="max-w-md min-w-[300px] mx-auto">
       <label htmlFor="location-search" className="sr-only">
         Search Location
       </label>
-      <div className="relative justify-center" role="search">
+      <div className="relative" role="search">
         <input
           id="location-search"
           type="text"
-          className="w-full h-36 bg-black font-serif placeholder:text-4xl placeholder:text-white placeholder:text-center text-white text-4xl border border-red-700 rounded-md pl-3 pr-28 py-4 transition duration-300 ease focus:outline-none focus:border-white hover:border-white shadow-sm focus:shadow "
+          className="w-full h-12 bg-black font-electrolize placeholder:text-lg placeholder:text-white/60 placeholder:text-left text-white text-lg border border-red-700 rounded-xl pl-4 pr-16 py-3 transition duration-300 ease focus:outline-none focus:border-white hover:border-white shadow-sm focus:shadow-lg"
           value={searchQuery}
           onChange={(e) => {
             setSearchQuery(e.target.value);
@@ -50,18 +50,17 @@ export default function SearchBar({ onSearch, isSearching = false } : SearchBarP
         <button
           onClick={handleSearch}
           disabled={isSearching || !searchQuery.trim()}
-          className="absolute h-34 top-1 right-1 flex items-center justify-center rounded w-1/6 py-3 px-3 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          className="absolute h-10 top-1 right-1 flex items-center justify-center rounded-lg w-12 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           type="button"
           aria-label={isSearching ? 'Searching Location' : 'Search Location'}>
           {isSearching ? (
-            <div className="flex items-center gap-1">
+            <div className="flex items-center justify-center">
               <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              <span className="text-xs">Searching...</span>
             </div>
           ) : (
             <svg
-              width="40"
-              height="40"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
