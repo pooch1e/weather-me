@@ -19,13 +19,13 @@ export default function HourlyWeatherStrip({ hourlyData }: HourlyWeather) {
     return date.toLocaleTimeString();
   };
   return (
-    <div className="bg-gray-900  border-2 rounded-2xl p-6 shadow-lg">
+    <div className="bg-gray-900 border-2 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg">
       <div className="overflow-x-auto no-scrollbar">
-        <div className="flex space-x-6">
+        <div className="flex space-x-4 sm:space-x-6">
           {hourlyData.slice(0, 24).map((hour, index) => (
             <div
               key={index}
-              className="flex flex-col items-center space-y-2 text-center min-w-16">
+              className="flex flex-col items-center space-y-2 text-center min-w-12 sm:min-w-16">
               <span className="text-xs text-gray-300 tracking-wide">
                 {formatTime(hour.time)}
               </span>
@@ -35,14 +35,14 @@ export default function HourlyWeatherStrip({ hourlyData }: HourlyWeather) {
             </div>
           ))}
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-4 opacity-50">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="size-6">
+            className="w-5 h-5 sm:w-6 sm:h-6">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -55,7 +55,7 @@ export default function HourlyWeatherStrip({ hourlyData }: HourlyWeather) {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="size-6">
+            className="w-5 h-5 sm:w-6 sm:h-6">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"

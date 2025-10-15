@@ -63,7 +63,7 @@ export default function HomePageContainer({
 
   return (
     <main className="bg-gradient-to-br from-black via-gray-900 to-black min-h-screen flex items-center justify-center p-2 sm:p-4 relative overflow-hidden">
-      {/* BG - Hidden on mobile, responsive positioning */}
+
       <div className="hidden sm:block absolute top-10 sm:top-20 left-10 sm:left-20 w-48 sm:w-96 h-48 sm:h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
       <div className="hidden sm:block absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-48 sm:w-96 h-48 sm:h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
 
@@ -74,7 +74,7 @@ export default function HomePageContainer({
             <SearchBar
               onSearch={handleFetchDataFromSearch}
               isSearching={isSearching}
-            />
+          />
           </div>
 
           
