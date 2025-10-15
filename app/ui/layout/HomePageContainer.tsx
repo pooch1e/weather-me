@@ -40,7 +40,7 @@ export default function HomePageContainer({
     }
   }, []);
 
-  // will also handle re-fetching from API
+
   const handleFetchDataFromSearch = async (query: string) => {
     startTransition(async () => {
       setSearchQuery(query);
@@ -49,7 +49,8 @@ export default function HomePageContainer({
       try {
         const { lat, long } = await geoLocateLocation(query);
 
-        const response = await fetchWeatherData(lat, long); // using london as default atm
+        // using London as default atm
+        const response = await fetchWeatherData(lat, long);
         setCurrentWeatherData(response);
       } catch (err: unknown) {
         console.error('Error fetching weather:', err);

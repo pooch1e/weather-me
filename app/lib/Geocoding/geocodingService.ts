@@ -28,6 +28,7 @@ export const geoLocateLocation = async (
     headers: {
       'User-Agent': USER_AGENT,
     },
+    next: { revalidate: 3600 },
   });
 
   if (!response.ok) {

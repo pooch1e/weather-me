@@ -1,8 +1,5 @@
-// !! FIX STRUCUTRE SO ITS CURRENT TIME:
-// !! CURRENT ->> HOURLY ->> DAILY
-
 import type { ProcessedWeatherData } from '@/app/lib/weather/weatherTypes';
-import ConditionsCard from './CondititionsCard';
+import ConditionsCard from './ConditionsCard';
 import HourlyWeatherStrip from './HourlyWeatherStrip';
 import WeeklyWeatherCard from './WeeklyWeather/WeeklyWeatherCard';
 

@@ -8,7 +8,7 @@ export default async function DayPage({
   params: { date: string };
 }) {
   const { date } = await params;
-  console.log(date, 'date in server');
+
   try {
     const weatherData = await fetchWeatherData(51.5085, -0.1257); // get cached data
 
@@ -51,14 +51,15 @@ export default async function DayPage({
       />
     );
   } catch (err: unknown) {
-    console.log(err, 'error fetching from weather api');
+    const errorMessage =
+      err instanceof Error
+        ? err.message
+        : 'Unable to fetch weather at this time';
     return (
       <div className="w-full max-w-4xl mx-auto space-y-4 p-4 text-white font-electrolize font-medium tracking-wide">
         <div className="bg-gradient-to-br from-red-900 to bg-red-800 rounded-3xl p-6 flex flex-col text-center shadow-lg">
           <h3 className="text-2xl mb-4">Error Loading Weather</h3>
-          <p className="text-lg opacity-80">
-            Unable to fetch weather data at this time.
-          </p>
+          <p className="text-lg opacity-80">{errorMessage}</p>
           <p className="text-sm opacity-60 mt-2">Please try again later.</p>
           <Link
             href="/"

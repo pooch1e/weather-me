@@ -6,7 +6,7 @@ export default async function Home() {
 
     return <HomePageContainer weatherData={weatherData} />;
   } catch (err: unknown) {
-    // !todo add proper error handling
-    console.log(err, 'error fetching from weather api');
+    const errorMessage = err instanceof Error ? err.message : 'Unknown Error';
+    throw new Error(errorMessage);
   }
 }

@@ -1,5 +1,5 @@
 'use client';
-import ConditionsCard from '../CondititionsCard';
+import ConditionsCard from '../ConditionsCard';
 import Link from 'next/link';
 interface HourlyData {
   time: string;
@@ -35,7 +35,6 @@ export default function DailyWeatherCard({
 
   return (
     <div className="w-full max-w-4xl mx-auto space-y-4 p-4 text-white font-electrolize font-medium tracking-wide">
-      {/* Header with location and date */}
       <div className="bg-gradient-to-br from-gray-900 to bg-gray-100 rounded-3xl p-6 flex flex-col text-center shadow-lg">
         <h3 className="text-2xl opacity-80 mb-4">{dayName}</h3>
         <p className="text-lg opacity-60">{formattedDate}</p>
@@ -55,7 +54,6 @@ export default function DailyWeatherCard({
         </div>
       </div>
 
-      {/* Conditions card - you might want to get weather code from hourly data */}
       {hourlyData.length > 0 && <ConditionsCard conditions={weatherCode} />}
 
       {/* Hourly breakdown for the entire day */}
