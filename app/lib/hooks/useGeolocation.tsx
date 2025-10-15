@@ -32,11 +32,13 @@ export function useGeolocation() {
         });
       },
       (error) => {
+        
         setState((prev) => ({
           ...prev,
           isLoading: false,
           error: 'Unable to get your location',
         }));
+        throw error;
       }
     );
   }, []);

@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Notes to self:
 
-## Getting Started
+Hooks: 
+  - userlocation in a hook as possiblity for expanding that logic to other parts of app
+  - Weather fetch is not currently in a hook as it is only really used on one page - however when expanding it would be good to refactor.
 
-First, run the development server:
+
+  # Weather Me - Modern Weather App
+
+A responsive weather application built with Next.js 15, featuring real-time weather data, location search, and automatic geolocation detection.
+
+## 🚀 Features
+
+- **Real-time Weather Data** - Current conditions, hourly forecasts, and 7-day outlook
+- **Smart Location Search** - Search any city worldwide with autocomplete
+- **Automatic Geolocation** - Detects user location on first visit
+- **Responsive Design** - Works seamlessly across desktop and mobile
+- **Modern UI/UX** - Clean, cyberpunk-inspired design with Tailwind CSS
+
+## 🏗️ Architecture
+
+### Tech Stack
+- **Next.js 15** with App Router and React 19
+- **TypeScript** for type safety
+- **Tailwind CSS 4** for styling
+- **Vitest** for testing
+- **Open-Meteo API** for weather data
+- **OpenStreetMap Nominatim** for geocoding
+
+### Key Design Decisions
+- **Server-side weather fetching** for better SEO and performance
+- **Client-side search** for responsive user interactions
+- **Modular component architecture** for maintainability
+- **Custom hooks** for geolocation logic separation
+
+## 🔧 Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+npm run dev    # Start development server
+npm run build  # Build for production
+npm run test   # Run tests
+npm run lint   # Check code quality
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## TODO
+Features
+Weather alerts and notifications
+Favorite locations management
+Historical weather data visualization
+Weather maps integration
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Technical Debt
+Add comprehensive error boundaries
+Implement proper loading skeletons
+Add E2E testing with Playwright
+Set up monitoring with Sentry

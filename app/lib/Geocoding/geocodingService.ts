@@ -37,9 +37,13 @@ export const geoLocateLocation = async (
 
   const data: GeocodingResult[] = await response.json();
 
+  if (data.length === 0) {
+    throw new Error('Location not found');
+  }
+
   return {
-    lat: data[0].lat,
-    long: data[0].lon,
+    lat: Number(data[0].lat),
+    long: Number(data[0].lon),
     name: data[0].display_name,
   };
 };

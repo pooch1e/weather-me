@@ -6,6 +6,7 @@ import type { HomePageContainerProps } from './types';
 import { fetchWeatherData } from '@/app/lib/weather/WeatherService';
 import type { ProcessedWeatherData } from '@/app/lib/weather/weatherTypes';
 import { geoLocateLocation } from '@/app/lib/Geocoding/geocodingService';
+import { useGeolocation } from '@/app/lib/hooks/useGeolocation';
 
 export default function HomePageContainer({
   weatherData,
@@ -17,29 +18,28 @@ export default function HomePageContainer({
   const [isError, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
+  const { coordinates: userLocation, isLoading: isGeoLoading } =
+    useGeolocation();
+
   // handle user location on mount first
   useEffect(() => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          try {
-            const response = await fetchWeatherData(lat, lon);
-            setCurrentWeatherData(response);
-            setSearchQuery('Your Location');
-          } catch (err) {
-            console.error('Error fetching weather for user location:', err);
-            // falls back to London
-          }
-        },
-        (error) => {
-          console.error('Geolocation error:', error);
+    if (userLocation && !isGeoLoading) {
+      const updateLocation = async () => {
+        try {
+          const response = await fetchWeatherData(
+            userLocation.lat,
+            userLocation.lon
+          );
+          setCurrentWeatherData(response);
+          setSearchQuery('Your Location');
+        } catch (err) {
+          // fallback to London
+          setSearchQuery('London');
         }
-      );
+      };
+      updateLocation();
     }
-  }, []);
-
+  }, [userLocation, isGeoLoading]);
 
   const handleFetchDataFromSearch = async (query: string) => {
     startTransition(async () => {
@@ -49,7 +49,7 @@ export default function HomePageContainer({
       try {
         const { lat, long } = await geoLocateLocation(query);
 
-        // using London as default atm
+        // using London as default location
         const response = await fetchWeatherData(lat, long);
         setCurrentWeatherData(response);
       } catch (err: unknown) {
@@ -65,7 +65,7 @@ export default function HomePageContainer({
     <main className="bg-black min-h-screen">
       <section className="p-6">
         <div className="mx-auto max-w-lg">
-          <SearchBar onSearch={handleFetchDataFromSearch} />
+          <SearchBar onSearch={handleFetchDataFromSearch} isSearching={isSearching} />
         </div>
       </section>
 

@@ -55,6 +55,11 @@ export const fetchWeatherData = async (
 
     return convertedData;
   } catch (err: unknown) {
-    throw new Error(`Failed to fetch weather data: code ${err.status}`);
+    console.error('Weather API Error:', err);
+    throw new Error(
+      `Failed to fetch weather data: ${
+        err instanceof Error ? err.message : 'Unknown error'
+      }`
+    );
   }
 };

@@ -48,5 +48,7 @@ export const mapCodeToCondition = (code: number): WeatherInfo => {
       category: 'thunderstorm',
     },
   };
-  return weatherMap[code] || '';
+  return (
+    weatherMap[code] || { description: 'Unknown conditions', category: 'clear' }
+  );
 };
