@@ -3,26 +3,27 @@ import { useState } from 'react';
 
 interface SearchBarProps {
   onSearch: (searchQuery: string) => void;
-  isSearching?: boolean
+  isSearching?: boolean;
 }
-export default function SearchBar({ onSearch, isSearching = false } : SearchBarProps) {
-  const [searchQuery, setSearchQuery] = useState<string>('')
+export default function SearchBar({
+  onSearch,
+  isSearching = false,
+}: SearchBarProps) {
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   // handle search
   const handleSearch = async () => {
-    if (!searchQuery.trim()) return
+    if (!searchQuery.trim()) return;
 
-    onSearch(searchQuery)
-  }
+    onSearch(searchQuery);
+  };
 
   // handle button press for search
-  const handleButtonSearch = (e : React.KeyboardEvent) => {
+  const handleButtonSearch = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      handleSearch()
+      handleSearch();
     }
-  }
-
-
+  };
 
   return (
     <div className="max-w-md min-w-[300px] mx-auto">

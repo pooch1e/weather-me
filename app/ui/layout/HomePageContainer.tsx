@@ -39,20 +39,25 @@ export default function HomePageContainer({
 
   
   return (
-    <main className="bg-black">
-      <section className="p-2">
-        <SearchBar onSearch={handleFetchDataFromSearch} />
+    <main className="bg-black min-h-screen">
+      <section className="p-6">
+        <div className="mx-auto max-w-lg">
+          <SearchBar onSearch={handleFetchDataFromSearch} />
+        </div>
       </section>
 
       {isError && (
-        <section className="p-2">
-          <div className="bg-red-500/10 border border-red-500 text-red-500 p-4 rounded">
-            {isError}
+        <section className="p-6">
+          <div className="mx-auto max-w-lg">
+            <div className="bg-gray-900/50 border border-amber-400 text-amber-400 p-6 rounded-2xl shadow-lg backdrop-blur-sm">
+              {isError}
+            </div>
           </div>
         </section>
       )}
-      <section className="p-2">
-        <div className={isPending ? 'opacity-50 pointer-events-none' : ''}>
+      
+      <section className="p-6">
+        <div className={`mx-auto max-w-lg space-y-6 ${isPending ? 'opacity-50 pointer-events-none' : ''}`}>
           <WeatherCard
             weatherData={currentWeatherData}
             searchQuery={searchQuery}
@@ -60,7 +65,7 @@ export default function HomePageContainer({
         </div>
         {isPending && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white">Loading...</div>
+            <div className="text-green-400 font-electrolize tracking-wide">LOADING...</div>
           </div>
         )}
       </section>
