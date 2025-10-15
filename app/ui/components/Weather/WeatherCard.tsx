@@ -15,8 +15,8 @@ export default function WeatherCard({
   return (
     <div className="w-full space-y-6 text-white font-electrolize tracking-wide">
       {/* location */}
-      <div className="bg-gray-900 border border-green-400 rounded-2xl p-6 text-center shadow-lg">
-        <h2 className="text-2xl font-light text-green-400 mb-4">
+      <div className="bg-gray-900 border border-white rounded-2xl p-6 text-center shadow-lg">
+        <h2 className="text-2xl font-light text-white mb-4">
           {searchQuery}
         </h2>
         <div>
@@ -39,7 +39,7 @@ export default function WeatherCard({
         <HourlyWeatherStrip hourlyData={weatherData.hourly} />
       </div>
 
-      <div className="bg-gray-900 border border-green-400 rounded-2xl shadow-lg">
+      <div className="bg-gray-900  border-2 rounded-2xl shadow-lg">
         <WeeklyWeatherCard weeklyData={weatherData.daily} />
       </div>
     </div>

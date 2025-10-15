@@ -19,7 +19,7 @@ export default function HourlyWeatherStrip({ hourlyData }: HourlyWeather) {
     return date.toLocaleTimeString();
   };
   return (
-    <div className="bg-gray-900 border border-green-400 rounded-2xl p-6 shadow-lg">
+    <div className="bg-gray-900  border-2 rounded-2xl p-6 shadow-lg">
       <div className="overflow-x-auto no-scrollbar">
         <div className="flex space-x-6">
           {hourlyData.slice(0, 24).map((hour, index) => (

@@ -34,7 +34,7 @@ export default function SearchBar({
         <input
           id="location-search"
           type="text"
-          className="w-full h-12 bg-black font-electrolize placeholder:text-lg placeholder:text-white/60 placeholder:text-left text-white text-lg border border-red-700 rounded-xl pl-4 pr-16 py-3 transition duration-300 ease focus:outline-none focus:border-white hover:border-white shadow-sm focus:shadow-lg"
+          className="w-full h-12 bg-black font-electrolize placeholder:text-lg placeholder:text-white/60 placeholder:text-left text-white text-lg  border-2 rounded-xl pl-4 pr-16 py-3 transition duration-300 ease focus:outline-none focus:border-white hover:border-white shadow-sm focus:shadow-lg"
           value={searchQuery}
           onChange={(e) => {
             setSearchQuery(e.target.value);
