@@ -1,5 +1,5 @@
 'use client';
-import ConditionsCard from '../CondititionsCard';
+import ConditionsCard from '../ConditionsCard';
 import Link from 'next/link';
 interface HourlyData {
   time: string;
@@ -15,7 +15,7 @@ interface DailyData {
 interface DailyWeatherProps {
   weatherCode: number;
   hourlyData: HourlyData[];
-  dailyData: DailyData | undefined;
+  dailyData: DailyData;
   date: string;
 }
 export default function DailyWeatherCard({
@@ -34,54 +34,76 @@ export default function DailyWeatherCard({
   });
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-4 p-4 text-white font-electrolize font-medium tracking-wide">
-      {/* Header with location and date */}
-      <div className="bg-gradient-to-br from-gray-900 to bg-gray-100 rounded-3xl p-6 flex flex-col text-center shadow-lg">
-        <h3 className="text-2xl opacity-80 mb-4">{dayName}</h3>
-        <p className="text-lg opacity-60">{formattedDate}</p>
+    <main className="bg-gradient-to-br from-black via-gray-900 to-black min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Ambient background effects */}
+      <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
 
-        <div className="mt-6">
-          <div className="flex justify-center gap-8 text-3xl">
-            <div>
-              <span className="text-5xl font-thin">{dailyData.maxTemp}°</span>
-              <p className="text-sm opacity-60">High</p>
+      <div className="relative z-10 w-full max-w-4xl space-y-6 text-white font-electrolize font-medium tracking-wide">
+        {/* Main container with glassmorphic effect */}
+        <div className="bg-gray-900/30 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-2xl border border-gray-800/50 space-y-6">
+          {/* Date Header Card */}
+          <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-6 flex flex-col text-center border border-gray-800/30">
+            <h3 className="text-2xl opacity-80 mb-2">{dayName}</h3>
+            <p className="text-lg opacity-60">{formattedDate}</p>
+
+            {/* Temperature Display */}
+            <div className="mt-6">
+              <div className="flex justify-center gap-8 text-3xl">
+                <div>
+                  <span className="text-5xl font-thin">
+                    {dailyData.maxTemp}°
+                  </span>
+                  <p className="text-sm opacity-60 mt-2">High</p>
+                </div>
+                <div className="text-4xl opacity-40 self-center">/</div>
+                <div>
+                  <span className="text-5xl font-thin">
+                    {dailyData.minTemp}°
+                  </span>
+                  <p className="text-sm opacity-60 mt-2">Low</p>
+                </div>
+              </div>
             </div>
-            <div className="text-4xl opacity-40 self-center">/</div>
-            <div>
-              <span className="text-5xl font-thin">{dailyData.minTemp}°</span>
-              <p className="text-sm opacity-60">Low</p>
+          </div>
+
+          {/* Conditions Card */}
+          {hourlyData.length > 0 && (
+            <div className="bg-black/20 backdrop-blur-sm rounded-2xl border border-gray-800/30 overflow-hidden">
+              <ConditionsCard conditions={weatherCode} />
             </div>
+          )}
+
+          {/* 24-Hour Forecast */}
+          <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/30">
+            <h3 className="text-xl mb-4 opacity-90">24-Hour Forecast</h3>
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
+              {hourlyData.map((hour) => {
+                const time = hour.time.split('T')[1].slice(0, 5);
+                return (
+                  <div
+                    key={hour.time}
+                    className="flex flex-col items-center p-3 bg-white/5 backdrop-blur-sm rounded-xl hover:bg-white/10 transition-all duration-200 border border-gray-800/30">
+                    <span className="text-xs opacity-70 mb-2">{time}</span>
+                    <span className="text-lg font-semibold">
+                      {hour.temperature}°
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Home Button */}
+          <div className="flex justify-center pt-2">
+            <Link href="/">
+              <button className=" border-2 border-gray-800/50 hover:border-green-400/50 text-white py-4 px-8 rounded-2xl transition-all duration-300 ">
+                Back to Home
+              </button>
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Conditions card - you might want to get weather code from hourly data */}
-      {hourlyData.length > 0 && <ConditionsCard conditions={weatherCode} />}
-
-      {/* Hourly breakdown for the entire day */}
-      <div className="bg-gradient-to-br from-gray-900 to bg-gray-100 rounded-3xl p-6 shadow-lg">
-        <h3 className="text-xl mb-4">24-Hour Forecast</h3>
-        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
-          {hourlyData.map((hour) => {
-            const time = hour.time.split('T')[1].slice(0, 5); // removes end of string
-            return (
-              <div
-                key={hour.time}
-                className="flex flex-col items-center p-3 bg-gray-800/50 rounded-xl hover:bg-gray-700/50 transition-colors">
-                <span className="text-xs opacity-70 mb-2">{time}</span>
-                <span className="text-lg font-semibold">
-                  {hour.temperature}°
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <Link href={'/'} className="flex justify-center">
-        <button className="border-2 py-4 p-4 rounded-2xl bg-gray-900 hover:border-green-400">
-          Home
-        </button>
-      </Link>
-    </div>
+    </main>
   );
 }

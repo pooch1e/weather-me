@@ -26,7 +26,7 @@ export default function SearchBar({
   };
 
   return (
-    <div className="max-w-md min-w-[300px] mx-auto">
+    <div className="w-full max-w-md mx-auto">
       <label htmlFor="location-search" className="sr-only">
         Search Location
       </label>
@@ -34,7 +34,7 @@ export default function SearchBar({
         <input
           id="location-search"
           type="text"
-          className="w-full h-12 bg-black font-electrolize placeholder:text-lg placeholder:text-white/60 placeholder:text-left text-white text-lg border border-red-700 rounded-xl pl-4 pr-16 py-3 transition duration-300 ease focus:outline-none focus:border-white hover:border-white shadow-sm focus:shadow-lg"
+          className="w-full h-12 bg-black font-electrolize placeholder:text-sm sm:placeholder:text-lg placeholder:text-white/60 placeholder:text-left text-white text-sm sm:text-lg border-2 rounded-xl pl-4 pr-16 py-3 transition duration-300 ease focus:outline-none focus:border-white hover:border-white shadow-sm focus:shadow-lg"
           value={searchQuery}
           onChange={(e) => {
             setSearchQuery(e.target.value);
@@ -60,15 +60,15 @@ export default function SearchBar({
             </div>
           ) : (
             <svg
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-white">
+              className="text-white sm:w-5 sm:h-5">
               <circle cx="11" cy="11" r="8" />
               <path d="M21 21L16.65 16.65" />
             </svg>

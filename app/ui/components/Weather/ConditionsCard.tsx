@@ -5,9 +5,9 @@ interface ConditionsProps {
 export default function ConditionsCard({ conditions }: ConditionsProps) {
   const condition = mapCodeToCondition(conditions);
   return (
-    <div className="bg-gray-900 border border-green-400 rounded-2xl p-6 shadow-lg">
+    <div className="bg-gray-900 border text-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg">
       <div className="text-center">
-        <p className="text-lg font-light text-green-400 tracking-wide">{condition.description}</p>
+        <p className="text-base sm:text-lg font-light text-white tracking-wide">{condition.description}</p>
       </div>
     </div>
   );
