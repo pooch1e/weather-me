@@ -50,9 +50,9 @@ export const fetchWeatherData = async (
     }
 
     const rawData = await response.json();
-    console.log('raw data', rawData);
+
     const convertedData = await processWeatherData(rawData);
-    console.log('converted data', convertedData);
+
     return convertedData;
   } catch (err: unknown) {
     throw new Error(`Failed to fetch weather data: code ${err.status}`);
