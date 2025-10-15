@@ -10,6 +10,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "lightningcss": "^1.30.2",
     "next": "15.5.4",
     "openmeteo": "^1.2.1",
     "react": "19.1.0",
