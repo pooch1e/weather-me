@@ -1,7 +1,7 @@
 'use client';
 import SearchBar from '../components/SearchBar';
 import WeatherCard from '../components/Weather/WeatherCard';
-import { useState, useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import type { HomePageContainerProps } from './types';
 import { fetchWeatherData } from '@/app/lib/weather/WeatherService';
 import type { ProcessedWeatherData } from '@/app/lib/weather/weatherTypes';
@@ -16,6 +16,29 @@ export default function HomePageContainer({
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [isError, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+
+  // handle user location on mount first
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          try {
+            const response = await fetchWeatherData(lat, lon);
+            setCurrentWeatherData(response);
+            setSearchQuery('Your Location');
+          } catch (err) {
+            console.error('Error fetching weather for user location:', err);
+            // falls back to London
+          }
+        },
+        (error) => {
+          console.error('Geolocation error:', error);
+        }
+      );
+    }
+  }, []);
 
   // will also handle re-fetching from API
   const handleFetchDataFromSearch = async (query: string) => {
@@ -37,7 +60,6 @@ export default function HomePageContainer({
     });
   };
 
-  
   return (
     <main className="bg-black min-h-screen">
       <section className="p-6">
@@ -55,9 +77,12 @@ export default function HomePageContainer({
           </div>
         </section>
       )}
-      
+
       <section className="p-6">
-        <div className={`mx-auto max-w-lg space-y-6 ${isPending ? 'opacity-50 pointer-events-none' : ''}`}>
+        <div
+          className={`mx-auto max-w-lg space-y-6 ${
+            isPending ? 'opacity-50 pointer-events-none' : ''
+          }`}>
           <WeatherCard
             weatherData={currentWeatherData}
             searchQuery={searchQuery}
@@ -65,7 +90,9 @@ export default function HomePageContainer({
         </div>
         {isPending && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-green-400 font-electrolize tracking-wide">LOADING...</div>
+            <div className="text-green-400 font-electrolize tracking-wide">
+              LOADING...
+            </div>
           </div>
         )}
       </section>

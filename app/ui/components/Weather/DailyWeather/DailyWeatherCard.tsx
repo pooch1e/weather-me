@@ -1,5 +1,6 @@
 'use client';
-import ConditionsCard from "../CondititionsCard";
+import ConditionsCard from '../CondititionsCard';
+import Link from 'next/link';
 interface HourlyData {
   time: string;
   temperature: number;
@@ -55,9 +56,7 @@ export default function DailyWeatherCard({
       </div>
 
       {/* Conditions card - you might want to get weather code from hourly data */}
-      {hourlyData.length > 0 && (
-        <ConditionsCard conditions={weatherCode} />
-      )}
+      {hourlyData.length > 0 && <ConditionsCard conditions={weatherCode} />}
 
       {/* Hourly breakdown for the entire day */}
       <div className="bg-gradient-to-br from-gray-900 to bg-gray-100 rounded-3xl p-6 shadow-lg">
@@ -78,6 +77,11 @@ export default function DailyWeatherCard({
           })}
         </div>
       </div>
+      <Link href={'/'} className="flex justify-center">
+        <button className="border-2 py-4 p-4 rounded-2xl bg-gray-900 hover:border-green-400">
+          Home
+        </button>
+      </Link>
     </div>
   );
 }

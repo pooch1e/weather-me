@@ -1,4 +1,3 @@
-'use client';
 // !! FIX STRUCUTRE SO ITS CURRENT TIME:
 // !! CURRENT ->> HOURLY ->> DAILY
 
