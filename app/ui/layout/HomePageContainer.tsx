@@ -62,15 +62,15 @@ export default function HomePageContainer({
   };
 
   return (
-    <main className="bg-gradient-to-br from-black via-gray-900 to-black min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      {/* BG */}
-      <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+    <main className="bg-gradient-to-br from-black via-gray-900 to-black min-h-screen flex items-center justify-center p-2 sm:p-4 relative overflow-hidden">
+      {/* BG - Hidden on mobile, responsive positioning */}
+      <div className="hidden sm:block absolute top-10 sm:top-20 left-10 sm:left-20 w-48 sm:w-96 h-48 sm:h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div className="hidden sm:block absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-48 sm:w-96 h-48 sm:h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
 
       <div className="relative z-10 w-full max-w-2xl">
-        <div className="bg-gray-900/30 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-2xl border border-gray-800/50 space-y-6 text-white">
+        <div className="bg-gray-900/30 backdrop-blur-2xl rounded-2xl sm:rounded-[2.5rem] p-4 sm:p-8 shadow-2xl border border-gray-800/50 space-y-4 sm:space-y-6 text-white">
           {/* Search */}
-          <div className="bg-black/20 rounded-2xl p-4 backdrop-blur-sm">
+          <div className="bg-black/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 backdrop-blur-sm">
             <SearchBar
               onSearch={handleFetchDataFromSearch}
               isSearching={isSearching}
