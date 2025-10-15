@@ -32,7 +32,7 @@ export default function WeeklyWeatherCard({ weeklyData }: WeeklyWeatherProps) {
         {weeklyData.map((value, index) => {
           return (
             <Link href={`/day/${value.time}`} key={index}>
-              <div className="flex flex-col items-center justify-center text-center space-y-2 py-4 rounded-2xl bg-gray-800/50 border border-green-400/30 hover:border-green-400 hover:bg-gray-800 transition-all duration-200 min-h-20">
+              <div className="flex flex-col items-center justify-center text-center space-y-3 py-6 px-3 w-auto rounded-2xl bg-gray-800/50 border border-green-400/30 hover:border-green-400 hover:bg-gray-800 transition-all duration-200 min-h-32">
                 <span
                   className={`text-xs tracking-wide ${
                     index === 0 ? 'font-medium text-green-400' : 'text-gray-300'
