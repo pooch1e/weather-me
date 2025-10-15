@@ -32,7 +32,7 @@ export default function HomePageContainer({
           );
           setCurrentWeatherData(response);
           setSearchQuery('Your Location');
-        } catch (err : unknown) {
+        } catch (err: unknown) {
           // fallback to London
           setSearchQuery('London');
         }
@@ -62,41 +62,47 @@ export default function HomePageContainer({
   };
 
   return (
-    <main className="bg-black min-h-screen">
-      <section className="p-6">
-        <div className="mx-auto max-w-lg">
-          <SearchBar onSearch={handleFetchDataFromSearch} isSearching={isSearching} />
-        </div>
-      </section>
+    <main className="bg-gradient-to-br from-black via-gray-900 to-black min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      {/* BG */}
+      <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
 
-      {isError && (
-        <section className="p-6">
-          <div className="mx-auto max-w-lg">
-            <div className="bg-gray-900/50 border border-amber-400 text-amber-400 p-6 rounded-2xl shadow-lg backdrop-blur-sm">
+      <div className="relative z-10 w-full max-w-2xl">
+        <div className="bg-gray-900/30 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-2xl border border-gray-800/50 space-y-6">
+          {/* Search */}
+          <div className="bg-black/20 rounded-2xl p-4 backdrop-blur-sm">
+            <SearchBar
+              onSearch={handleFetchDataFromSearch}
+              isSearching={isSearching}
+            />
+          </div>
+
+          
+          {isError && (
+            <div className="bg-amber-500/10 border border-amber-500/50 text-amber-400 px-4 py-3 rounded-2xl backdrop-blur-sm">
               {isError}
             </div>
-          </div>
-        </section>
-      )}
+          )}
 
-      <section className="p-6">
-        <div
-          className={`mx-auto max-w-lg space-y-6 ${
-            isPending ? 'opacity-50 pointer-events-none' : ''
-          }`}>
-          <WeatherCard
-            weatherData={currentWeatherData}
-            searchQuery={searchQuery}
-          />
-        </div>
-        {isPending && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-green-400 font-electrolize tracking-wide">
-              LOADING...
-            </div>
+
+          <div
+            className={`relative ${
+              isPending ? 'opacity-50 pointer-events-none' : ''
+            }`}>
+            <WeatherCard
+              weatherData={currentWeatherData}
+              searchQuery={searchQuery}
+            />
+            {isPending && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-md rounded-3xl">
+                <div className="text-green-400 font-electrolize tracking-wide text-xl">
+                  LOADING...
+                </div>
+              </div>
+            )}
           </div>
-        )}
-      </section>
+        </div>
+      </div>
     </main>
   );
 }
