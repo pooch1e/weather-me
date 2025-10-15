@@ -1,3 +1,4 @@
+'use client';
 // !! FIX STRUCUTRE SO ITS CURRENT TIME:
 // !! CURRENT ->> HOURLY ->> DAILY
 
@@ -16,31 +17,35 @@ export default function WeatherCard({
   searchQuery,
 }: WeatherDataProps) {
   return (
-    <div className="w-full max-w-md  mx-auto space-y-4 p-4 text-white font-electrolize font-medium tracking-wide">
+    <div className="w-full space-y-6 text-white font-electrolize tracking-wide">
       {/* location */}
-      <div className="bg-gradient-to-br from-gray-900 to bg-gray-100 rounded-3xl p-6 flex flex-col text-center shadow-lg">
-        <h2 className="text-6xl">{searchQuery}</h2>
+      <div className="bg-gray-900 border border-green-400 rounded-2xl p-6 text-center shadow-lg">
+        <h2 className="text-2xl font-light text-green-400 mb-4">
+          {searchQuery}
+        </h2>
         <div>
-          <div className="text-8xl font-thin mb-2">
+          <div className="text-6xl font-thin mb-4 text-white">
             {weatherData.current.temperature}°
           </div>
-          <div className="flex justify-between text-sm opacity-80 flex-col">
-            <div>Feels Like: {weatherData.current.apparentTemperature}°C</div>
-            <span>High: {weatherData.daily[0].maxTemp}°C</span>
-            <span>Low: {weatherData.daily[0].minTemp}°C</span>
+          <div className="space-y-2 text-sm text-gray-300">
+            <div>FEELS LIKE: {weatherData.current.apparentTemperature}°C</div>
+            <div className="flex justify-center space-x-4">
+              <span>HIGH: {weatherData.daily[0].maxTemp}°C</span>
+              <span>•</span>
+              <span>LOW: {weatherData.daily[0].minTemp}°C</span>
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <div>
-          <ConditionsCard conditions={weatherData.current.weatherCode} />
-        </div>
+
+      <div className="space-y-6">
+        <ConditionsCard conditions={weatherData.current.weatherCode} />
         <HourlyWeatherStrip hourlyData={weatherData.hourly} />
       </div>
 
-      <div className='border-2 rounded-2xl'>
-      
-        <WeeklyWeatherCard weeklyData={weatherData.daily}/></div>
+      <div className="bg-gray-900 border border-green-400 rounded-2xl shadow-lg">
+        <WeeklyWeatherCard weeklyData={weatherData.daily} />
+      </div>
     </div>
   );
 }
