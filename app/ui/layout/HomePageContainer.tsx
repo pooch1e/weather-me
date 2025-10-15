@@ -33,6 +33,8 @@ export default function HomePageContainer({
           setCurrentWeatherData(response);
           setSearchQuery('Your Location');
         } catch (err: unknown) {
+          const errorMessage = err instanceof Error ? err.message : 'error';
+          console.log(errorMessage);
           // fallback to London
           setSearchQuery('London');
         }
@@ -63,7 +65,6 @@ export default function HomePageContainer({
 
   return (
     <main className="bg-gradient-to-br from-black via-gray-900 to-black min-h-screen flex items-center justify-center p-2 sm:p-4 relative overflow-hidden">
-
       <div className="hidden sm:block absolute top-10 sm:top-20 left-10 sm:left-20 w-48 sm:w-96 h-48 sm:h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
       <div className="hidden sm:block absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-48 sm:w-96 h-48 sm:h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
 
@@ -74,16 +75,14 @@ export default function HomePageContainer({
             <SearchBar
               onSearch={handleFetchDataFromSearch}
               isSearching={isSearching}
-          />
+            />
           </div>
 
-          
           {isError && (
             <div className="bg-amber-500/10 border border-amber-500/50 text-amber-400 px-4 py-3 rounded-2xl backdrop-blur-sm">
               {isError}
             </div>
           )}
-
 
           <div
             className={`relative ${

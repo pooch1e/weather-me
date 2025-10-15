@@ -2,13 +2,12 @@ import { fetchWeatherData } from '@/app/lib/weather/WeatherService';
 import DailyWeatherCard from '@/app/ui/components/Weather/DailyWeather/DailyWeatherCard';
 import Link from 'next/link';
 
-export default async function DayPage({
-  params,
-}: {
-  params: { date: string };
-}) {
-  const { date } = await params;
+interface DayPageProps {
+  params: Promise<{ date: string }>;
+}
 
+export default async function DayPage({ params }: DayPageProps) {
+  const { date } = await params;
   try {
     const weatherData = await fetchWeatherData(51.5085, -0.1257); // get cached data
 
