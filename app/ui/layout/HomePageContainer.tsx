@@ -32,7 +32,7 @@ export default function HomePageContainer({
           );
           setCurrentWeatherData(response);
           setSearchQuery('Your Location');
-        } catch (err) {
+        } catch (err : unknown) {
           // fallback to London
           setSearchQuery('London');
         }

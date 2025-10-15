@@ -15,7 +15,7 @@ interface DailyData {
 interface DailyWeatherProps {
   weatherCode: number;
   hourlyData: HourlyData[];
-  dailyData: DailyData | undefined;
+  dailyData: DailyData;
   date: string;
 }
 export default function DailyWeatherCard({
