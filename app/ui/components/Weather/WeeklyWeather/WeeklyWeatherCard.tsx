@@ -27,8 +27,36 @@ export default function WeeklyWeatherCard({ weeklyData }: WeeklyWeatherProps) {
   };
 
   return (
-    <div className="p-6">
-      <div className="grid grid-cols-7 gap-3">
+    <div className="p-3 sm:p-6">
+      <div className="sm:hidden">
+        <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
+          {weeklyData.map((value, index) => {
+            return (
+              <Link href={`/day/${value.time}`} key={index}>
+                <div className="flex flex-col items-center justify-center text-center space-y-2 py-4 px-3 min-w-[80px] rounded-2xl bg-gray-800/50 border border-green-400/30 hover:bg-gray-800 transition-all duration-200">
+                  <span
+                    className={`text-xs tracking-wide ${
+                      index === 0 ? 'font-medium text-white' : 'text-gray-300'
+                    }`}>
+                    {formatDay(value.time)}
+                  </span>
+
+                  <span className="text-sm font-light text-white">
+                    {Math.round(value.maxTemp)}°
+                  </span>
+
+                  <span className="text-xs text-gray-300">
+                    {Math.round(value.minTemp)}°
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+      
+
+      <div className="hidden sm:grid grid-cols-7 gap-3">
         {weeklyData.map((value, index) => {
           return (
             <Link href={`/day/${value.time}`} key={index}>
