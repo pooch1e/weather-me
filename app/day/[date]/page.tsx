@@ -21,5 +21,8 @@ export default async function DayPage({
 
     // return weather card with addition of day and temp
     return <DailyWeatherCard weatherCode={weatherData.current.weatherCode}hourlyData={hourlyData} dailyData={dailyData} date={date} />;
-  } catch (err: unknown) {}
+  } catch (err: unknown) {
+    // !todo add proper error handling
+    console.log(err, 'error fetching from weather api');
+  }
 }
