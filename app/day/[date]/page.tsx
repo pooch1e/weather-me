@@ -7,6 +7,7 @@ export default async function DayPage({
   params: { date: string };
 }) {
   const { date } = await params;
+  console.log(date, 'date in server')
   try {
     const weatherData = await fetchWeatherData(51.5085, -0.1257); // get cached data
 
@@ -19,6 +20,6 @@ export default async function DayPage({
 
 
     // return weather card with addition of day and temp
-    return <DailyWeatherCard weatherCode={weatherData.current.weatherCode}hourlyData={hourlyData} dailyData={dailyData} />;
+    return <DailyWeatherCard weatherCode={weatherData.current.weatherCode}hourlyData={hourlyData} dailyData={dailyData} date={date} />;
   } catch (err: unknown) {}
 }
