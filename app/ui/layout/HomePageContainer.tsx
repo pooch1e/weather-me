@@ -10,7 +10,6 @@ import { geoLocateLocation } from '@/app/lib/Geocoding/geocodingService';
 export default function HomePageContainer({
   weatherData,
 }: HomePageContainerProps) {
-  console.log(weatherData);
   const [currentWeatherData, setCurrentWeatherData] =
     useState<ProcessedWeatherData>(weatherData);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -38,7 +37,7 @@ export default function HomePageContainer({
     });
   };
 
-  // add styling here
+  
   return (
     <main className="bg-black">
       <section className="p-2">
