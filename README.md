@@ -1,57 +1,76 @@
-Notes to self:
+### Weather Me - Modern Weather App
 
-Hooks: 
-  - userlocation in a hook as possiblity for expanding that logic to other parts of app
-  - Weather fetch is not currently in a hook as it is only really used on one page - however when expanding it would be good to refactor.
+A responsive weather application built with Next.js, featuring real-time weather data, intelligent location search, and automatic geolocation detection.
+Live Demo: https://weather-k12ll1to3-joel-krams-projects.vercel.app/
 
+## ✨ Features
 
-  # Weather Me - Modern Weather App
+Real-time Weather Data - Current conditions, hourly forecasts, and 7-day outlook
+Smart Location Search - Search any city worldwide with autocomplete
+Automatic Geolocation - Detects user location on first visit
+Responsive Design - Seamless experience across desktop and mobile devices
+Modern UI/UX - Clean, arcade-style design built with Tailwind CSS
 
-A responsive weather application built with Next.js 15, featuring real-time weather data, location search, and automatic geolocation detection.
+## 🛠️ Tech Stack
 
-## 🚀 Features
+Next.js 14 with App Router and React 19
+TypeScript for type safety
+Tailwind CSS 4 for styling
+Vitest for unit testing
+Open-Meteo API for weather data
+OpenStreetMap Nominatim for geocoding
 
-- **Real-time Weather Data** - Current conditions, hourly forecasts, and 7-day outlook
-- **Smart Location Search** - Search any city worldwide with autocomplete
-- **Automatic Geolocation** - Detects user location on first visit
-- **Responsive Design** - Works seamlessly across desktop and mobile
-- **Modern UI/UX** - Clean, cyberpunk-inspired design with Tailwind CSS
+## 🏗️ Architecture & Design Decisions
 
-## 🏗️ Architecture
+Server-side weather fetching - Improves SEO, reduces client bundle size, and provides better initial page load performance
+Client-side search - Enables responsive user interactions without page reloads
+Modular component architecture - Promotes code reusability and maintainability
+Custom hooks - Separates business logic (geolocation) from UI components
 
-### Tech Stack
-- **Next.js 15** with App Router and React 19
-- **TypeScript** for type safety
-- **Tailwind CSS 4** for styling
-- **Vitest** for testing
-- **Open-Meteo API** for weather data
-- **OpenStreetMap Nominatim** for geocoding
+## 🚀 Getting Started
+Prerequisites
 
-### Key Design Decisions
-- **Server-side weather fetching** for better SEO and performance
-- **Client-side search** for responsive user interactions
-- **Modular component architecture** for maintainability
-- **Custom hooks** for geolocation logic separation
-
-## 🔧 Development
+Node.js 18+
+npm or yarn
 
 ```bash
-npm run dev    # Start development server
-npm run build  # Build for production
-npm run test   # Run tests
-npm run lint   # Check code quality
+# Clone the repository
+git clone [https://github.com/pooch1e/weather-me]
 
+# Install dependencies
+npm install
+# or
+yarn install
+```
 
+## Running Locally
+```bash
+# Development server
+npm run dev
+# or
+yarn dev
+```
 
-## TODO
-Features
-Weather alerts and notifications
-Favorite locations management
+## Build & Test
+```bash
+# Build for production
+npm run build
+
+# Run tests
+npm run test
+
+# Lint code
+npm run lint
+```
+
+## 🔮 Future Enhancements
+
+Weather alerts and notifications system
+Favorite locations with quick access
 Historical weather data visualization
-Weather maps integration
+Interactive weather maps
+Temperature unit toggle (Celsius/Fahrenheit)
+Light/dark mode theming
 
-Technical Debt
-Add comprehensive error boundaries
-Implement proper loading skeletons
-Add E2E testing with Playwright
-Set up monitoring with Sentry# Force rebuild
+## 📝 Notes
+This application was built as a technical assessment and portfolio project. Weather data is provided by Open-Meteo API and geocoding by OpenStreetMap Nominatim. All API usage is for educational and demonstration purposes.
